@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NGO Dashboard</title>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+
+            background: url('bg.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            background: linear-gradient(
+                rgba(0,0,0,0.45),
+                rgba(0,0,0,0.25),
+                rgba(0,0,0,0.15)
+            );
+
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 30px;
+            color: white;
+            text-shadow: 0px 4px 12px rgba(0,0,0,0.8);
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 20px;
+            width: 280px;
+            margin: 15px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .accept {
+            background: green;
+            color: white;
+        }
+
+        .reject {
+            background: red;
+            color: white;
+        }
+
+        .back {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #27ae60;
+            color: white;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="content">
+
+    <h1>🏢 NGO Dashboard</h1>
+
+    <div class="container">
+
+        <!-- Request 1 -->
+        <div class="card">
+            <h3>Food Request</h3>
+            <p>📍 Nashik</p>
+            <p>🍱 40 meals</p>
+            <p>⚡ Medium</p>
+
+            <button class="accept" onclick="accept()">Accept</button>
+            <button class="reject" onclick="reject()">Reject</button>
+        </div>
+
+        <!-- Request 2 -->
+        <div class="card">
+            <h3>Food Request</h3>
+            <p>📍 Mumbai</p>
+            <p>🍱 70 meals</p>
+            <p>⚡ High</p>
+
+            <button class="accept" onclick="accept()">Accept</button>
+            <button class="reject" onclick="reject()">Reject</button>
+        </div>
+
+        <!-- Request 3 -->
+        <div class="card">
+            <h3>Food Request</h3>
+            <p>📍 Pune</p>
+            <p>🍱 25 meals</p>
+            <p>⚡ Low</p>
+
+            <button class="accept" onclick="accept()">Accept</button>
+            <button class="reject" onclick="reject()">Reject</button>
+        </div>
+
+    </div>
+
+    <!-- Back Button -->
+    <div style="text-align:center;">
+        <a href="index.html">
+            <button class="back">⬅ Back to Donor Page</button>
+        </a>
+    </div>
+
+</div>
+
+<script>
+function accept() {
+    alert("Request Accepted ✅");
+}
+
+function reject() {
+    alert("Request Rejected ❌");
+}
+</script>
+
+</body>
+</html>
