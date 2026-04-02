@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Waste Reduction System</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+
+            background: url('bg.png') no-repeat center center fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Overlay layer */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 0;
+             background: linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.25),
+        rgba(0,0,0,0.15)
+    );
+
+    z-index: 0;
+}
+    
+
+        /* Content above overlay */
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            padding-top: 30px;
+            color: white;
+            text-shadow: 0px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .tagline {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            margin-top: -10px;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 25px;
+            width: 350px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 25px rgba(0,0,0,0.4);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.03);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1e8449;
+        }
+
+        .result-card {
+            margin-top: 20px;
+            background: #ecf9f1;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .highlight {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .high { color: red; }
+        .medium { color: orange; }
+        .low { color: green; }
+
+    </style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="content">
+
+    <h1>🍱 Food Waste Reduction System</h1>
+    <p class="tagline">“Turning Waste into Worth” ♻️</p>
+
+    <div class="container">
+        <div class="card">
+
+            <form id="foodForm">
+
+                <label>Food Quantity (meals)</label>
+                <input type="number" id="quantity" required>
+
+                <label>Location</label>
+                <input type="text" id="location" placeholder="e.g. Nashik" required>
+
+                <label>Food Type</label>
+                <select id="type">
+                    <option>Veg</option>
+                    <option>Non-Veg</option>
+                </select>
+
+                <label>Time Since Prepared (hours)</label>
+                <input type="number" id="time" required>
+
+                <button type="submit">Find Best Match 🚀</button>
+
+            </form>
+
+            <div id="result" class="result-card" style="display:none;">
+                <p>Suggested NGO:</p>
+                <p class="highlight" id="ngoName"></p>
+
+                <p>Urgency Level:</p>
+                <p class="highlight" id="urgencyLevel"></p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+document.getElementById("foodForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let quantity = parseInt(document.getElementById("quantity").value);
+    let time = parseInt(document.getElementById("time").value);
+    let location = document.getElementById("location").value.toLowerCase();
+
+    let urgency = "Low";
+    let urgencyClass = "low";
+
+    if (quantity > 50 || time > 5) {
+        urgency = "High";
+        urgencyClass = "high";
+    } 
+    else if (quantity > 20) {
+        urgency = "Medium";
+        urgencyClass = "medium";
+    }
+
+    let ngo = "Helping Hands NGO";
+
+    if (location.includes("nashik")) {
+        ngo = "Nashik Food Bank";
+    } 
+    else if (location.includes("mumbai")) {
+        ngo = "Mumbai Hunger Relief";
+    } 
+    else if (location.includes("pune")) {
+        ngo = "Pune Food Rescue";
+    }
+
+    document.getElementById("result").style.display = "block";
+    document.getElementById("ngoName").innerText = ngo;
+
+    let urgencyElement = document.getElementById("urgencyLevel");
+    urgencyElement.innerText = urgency;
+    urgencyElement.className = "highlight " + urgencyClass;
+
+});
+</script>
+
+</body>
+</html>
